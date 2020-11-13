@@ -4,14 +4,20 @@ public class Judge{
 
 	public int findJudge(int N, int [][] trust){
 		int [] trusts= new int[N+1];
+		// stores nubmer of people the person trusts
 		int [] trusted= new int[N+1];
+		//stores number of people who trust the person 
 
 		for(int i=0; i<trust.length; i++){
+			//reading trust in form of [a,b]
 			int a= trust[i][0];
+			
 			int b= trust[i][1];
 
 			trusts[a]--;
+			//if this person trusts others so can't be a judge
 			trusted[b]++;
+			//the person is trusted so they could be judge
 		}
 		int numJudges=0;
 		int judgeIndex= -1;
@@ -20,7 +26,7 @@ public class Judge{
 			if(trusted[j]==N-1&& trusts[j]==0){
 				judgeIndex = j;
 				numJudges++;
-				//else just added
+				//checks from stored list if there is a possible judge
 			}
 			if(numJudges>1){
 				return -1;
